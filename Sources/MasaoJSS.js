@@ -234,6 +234,22 @@ function MasaoJSS(mc, caseInsensitive) {
 				mc.mp.co_j.y = (j + 10) * 32;
 				return true;
 			}
+		} else if (mc.mp && this.getMode() === 400) {
+			var i;
+			var j;
+			i = parseInt(s);
+			j = parseInt(s1);
+			if (isNaN(i) || isNaN(j)) {
+				i = -1;
+				j = -1;
+			}
+			if (i < 0 || i >= 16 || j < 0 || j >= 10) {
+				return false;
+			} else {
+				mc.mp.ig.co_j.x = i * 32;
+				mc.mp.ig.co_j.y = j * 32;
+				return true;
+			}
 		} else {
 			return false;
 		}
@@ -2856,7 +2872,7 @@ function MasaoJSS(mc, caseInsensitive) {
 	 * @param {number} left 新しい残りコンティニュー数
 	 */
 	this.setMyLeft = function(s) {
-		if (this.getMode() >= 100 && this.getMode() < 200) {
+		if ((this.getMode() >= 100 && this.getMode() < 200) || this.getMode() === 400) {
 			var i;
 			i = parseInt(s);
 			if (isNaN(i)) {
@@ -2896,7 +2912,7 @@ function MasaoJSS(mc, caseInsensitive) {
 	 */
 	this.getMyLeft = function() {
 		var i = -1;
-		if (this.getMode() >= 100 && this.getMode() < 200) {
+		if ((this.getMode() >= 100 && this.getMode() < 200) || this.getMode() === 400) {
 			i = mc.mp.j_left;
 			return i;
 		} else {
